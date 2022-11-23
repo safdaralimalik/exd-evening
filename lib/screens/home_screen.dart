@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3/screens/value_screen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -13,7 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void increment(){
     count=count+1;
     setState(() {
-
     });
   }
 
@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Text("Counter Value: $count",style: TextStyle(fontSize: 20),),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -52,8 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
                  onPressed: decrement, icon: Icon(Icons.remove_circle,color: Colors.red,))
 
             ],
-          )
+          ),
 
+          TextButton(onPressed: (){
+
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+
+              return ValueScreen(counterValue: count);
+            }));
+          }, child: Text("Navigate"))
         ],
       )
     );
