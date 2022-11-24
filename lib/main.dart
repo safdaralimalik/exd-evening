@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:week_3/screens/home_screen.dart';
+import 'package:week_3/screens/home_task_two.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const HomeTaskTwo(),
     );
   }
 }

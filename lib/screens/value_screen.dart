@@ -8,8 +8,6 @@ class ValueScreen extends StatefulWidget {
 }
 class _ValueScreenState extends State<ValueScreen> {
   String myValue="";
-
-
   void multiplyFun({required int value}){
     myValue="${value*2}";
   }
@@ -18,8 +16,6 @@ class _ValueScreenState extends State<ValueScreen> {
     super.initState();
     multiplyFun(value: widget.counterValue);
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +28,18 @@ class _ValueScreenState extends State<ValueScreen> {
         },child: Text("Back",style: TextStyle(color: Colors.white,fontSize: 16),),),
       ),
 
-      body:Center(child: Text(myValue,style: TextStyle(fontSize: 30,color: Colors.white),),)
+      body:Container(
+       width: MediaQuery.of(context).size.width,
+       height: 300,
+       color: Colors.green,
+        padding: EdgeInsets.all(30),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 300,
+          color: Colors.yellow,
+
+        ),
+      )
     );
   }
 
