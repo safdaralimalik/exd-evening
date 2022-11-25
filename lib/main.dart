@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:week_3/hometask3/main_screen.dart';
+
+import 'package:week_3/screens/home_task_three.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,6 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainScreen(),
+      home: HomeTaskThree(),
     );
   }
 }
