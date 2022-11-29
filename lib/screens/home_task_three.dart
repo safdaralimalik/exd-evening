@@ -12,7 +12,7 @@ class HomeTaskThree extends StatelessWidget {
       image:"assets/pngs/girl.png",
       name: "Startbuc coffee1",
       dateTime: "Dec 20, 2022 : 3:09:AM",
-      price: "50"),
+      price: "100"),
     TripsModel(
         image:"assets/pngs/Boy.png",
         name: "Startbuc coffee2",
@@ -32,12 +32,11 @@ class HomeTaskThree extends StatelessWidget {
         title: Text("Home Task Three"),
       ),
       body: ListView.builder(
-        itemCount: tripsList.length,
+        itemCount: tripsList.length,//3
         padding: EdgeInsets.all(25),
           itemBuilder: (BuildContext context,int  index){
-          TripsModel detail=tripsList[index];
+          TripsModel detail=tripsList[index];//index=0,1,2
        return RecentTripsItemViewWithModel(detail: detail);
-
       })
     );
   }

@@ -1,11 +1,12 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:week_3/models/trips_model.dart';
 class RecentTripsItemViewWithModel extends StatelessWidget {
   final TripsModel detail;
   const RecentTripsItemViewWithModel({Key? key,required this.detail}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 100,
@@ -14,7 +15,8 @@ class RecentTripsItemViewWithModel extends StatelessWidget {
         Container(
           width: 100,
           height: 100,
-          child: Image.asset(detail.image,fit: BoxFit.cover,),
+          child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 0.1, sigmaY: 0.2),child: Image.asset(detail.image,fit: BoxFit.cover,)),
         ),
         const SizedBox(width: 8,),
         Expanded(
