@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:week_3/screens/home_task_three.dart';
-import 'package:week_3/screens/home_task_two.dart';
-import 'package:week_3/screens/my_stateless_widget.dart';
+import 'package:week_3/screens/my_tab_view_screen.dart';
+import 'package:week_3/screens/whatsapp/whatsapp_tabs_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  MyStatelessWidget(),
+      home:  const WhatsAppTabsScreen(),
     );
   }
 }
