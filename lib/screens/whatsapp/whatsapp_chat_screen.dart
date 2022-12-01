@@ -10,8 +10,17 @@ class WhatsAppChatScreen extends StatefulWidget {
 class _WhatsAppChatScreenState extends State<WhatsAppChatScreen> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context,index){
-      return ListTile(title: Text("name"),subtitle: Text("last message"),);
-    });
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return const ListTile(
+          leading: CircleAvatar(
+            radius: 35,
+          ),
+          title: Text("name"),
+          subtitle: Text("last message"),
+          trailing: Text("9:00 pm"),
+        );
+      },
+    );
   }
 }
