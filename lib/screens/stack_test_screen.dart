@@ -28,7 +28,6 @@ class _StackTestScreenState extends State<StackTestScreen> {
               ),
             ),
             SvgPicture.asset("assets/svgs/whatsapp.svg",color: Colors.white,),
-
             Text("dfwdfwf",style: GoogleFonts.abel(
               color: Colors.white,
 
