@@ -1,0 +1,95 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "2:6173652177680590997",
+      "lastPropertyId": "4:2376961206279312223",
+      "name": "PostModel",
+      "properties": [
+        {
+          "id": "1:5622948551345044368",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4910393829558673263",
+          "name": "userId",
+          "type": 6
+        },
+        {
+          "id": "3:5921184385133693010",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:2376961206279312223",
+          "name": "body",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:1262454752423145538",
+      "lastPropertyId": "6:5343107985710796311",
+      "name": "UserModel",
+      "properties": [
+        {
+          "id": "1:7870652514521436427",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:410308556661551333",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:6439592828178720636",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "4:4532217937932039968",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "5:6729610276841483356",
+          "name": "phone",
+          "type": 9
+        },
+        {
+          "id": "6:5343107985710796311",
+          "name": "website",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:1262454752423145538",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    2586803159984189170
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    7496505951724511285,
+    6157023962934848505,
+    1946056154145193199,
+    7952597763242306824,
+    2959308685567876627,
+    2357197208821716741
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
