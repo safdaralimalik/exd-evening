@@ -55,16 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(title: Text("Home Screen"),
       actions: [
         TextButton(onPressed: (){
+
           PostModel detail= PostModel.autoId(
               userId: 1,
               title: "title",
               body: "body");
           objectBox.insertPostModel(detail);
 
-           print("Post Count:${objectBox.getPostModelCount()}");
-           setState(() {
 
-           });
+
         }, child: Text("Add Post",style: TextStyle(color: Colors.white),)),
         TextButton(onPressed: (){
      objectBox.clearAllDB();
@@ -73,23 +72,55 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         }, child: Text("Clear",style: TextStyle(color: Colors.white),))
       ],),
-      body: FutureBuilder<List<PostModel>>(
-        future: getPostList(),
-        builder: (BuildContext context,AsyncSnapshot<List<PostModel>> snapshot){
-          if(snapshot.hasData){
-            return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context,index){
-                  PostModel detail=snapshot.data![index];
-              return ListTile(
-                title: Text(detail.title),
-                subtitle: Text(detail.body),
-              );
-            });
-          }
-          return const Center(child: CupertinoActivityIndicator(),);
-        },
+      body:
+
+      ListView(
+        children: [
+          // FutureBuilder<List<PostModel>>(
+          //   future: getPostList(),
+          //   builder: (BuildContext context,AsyncSnapshot<List<PostModel>> snapshot){
+          //     if(snapshot.hasData){
+          //       return ListView.builder(
+          //         shrinkWrap: true,
+          //           physics: ScrollPhysics(),
+          //           itemCount: snapshot.data!.length,
+          //           itemBuilder: (context,index){
+          //             PostModel detail=snapshot.data![index];
+          //         return ListTile(
+          //           title: Text(detail.title),
+          //           subtitle: Text(detail.body),
+          //         );
+          //       });
+          //     }
+          //     return const Center(child: CupertinoActivityIndicator(),);
+          //   },
+          // ),
+
+          StreamBuilder<List<PostModel>>(
+            stream: objectBox.getAllPostOfListStream(),
+            builder: (context, snapshot){
+              if(snapshot.connectionState==ConnectionState.active){
+                return ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context,index){
+                      PostModel detail=snapshot.data![index];
+                      return ListTile(
+                        title: Text(detail.title),
+                        subtitle: Text(detail.body),
+                      );
+                    });
+              }
+              return const Center(child: CupertinoActivityIndicator(),);
+            },
+          ),
+
+
+        ],
       ),
+
+
     );
   }
 }

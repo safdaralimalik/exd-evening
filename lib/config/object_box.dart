@@ -32,6 +32,24 @@ class ObjectBox{
     return list;
 
  }
+
+ deletePostById(int postId){
+    _postModelBox.remove(postId);
+ }
+
+  Stream<List<PostModel>> getAllPostOfUsersListStream(int userId) =>
+      _postModelBox
+          .query(PostModel_.userId.equals(userId))
+          .watch(triggerImmediately: true)
+          .map((query) => query.find());
+
+  Stream<List<PostModel>> getAllPostOfListStream() =>
+      _postModelBox
+          .query()
+          .watch(triggerImmediately: true)
+          .map((query) => query.find());
+
+
   insertPostModel(PostModel detail){
     _postModelBox.put(detail);
   }
