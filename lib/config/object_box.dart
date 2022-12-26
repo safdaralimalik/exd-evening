@@ -5,10 +5,16 @@ import '../models/user_model.dart';
 
 class ObjectBox{
   late final Store store;
+  late final Admin _admin;
   late final Box<PostModel> _postModelBox;
   late final Box<UserModel> _userModelBox;
 
   ObjectBox._init(this.store){
+    if (Admin.isAvailable()) {
+      // Keep a reference until no longer needed or manually closed.
+      _admin = Admin(store);
+    }
+
     _postModelBox=Box<PostModel>(store);
     _userModelBox=Box<UserModel>(store);
   }
@@ -33,9 +39,10 @@ class ObjectBox{
 
  }
 
- deletePostById(int postId){
-    _postModelBox.remove(postId);
+bool deletePostById(int postId){
+    return _postModelBox.remove(postId);
  }
+
 
   Stream<List<PostModel>> getAllPostOfUsersListStream(int userId) =>
       _postModelBox

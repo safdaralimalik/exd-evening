@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.local_storage_app">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="local_storage_app"
         android:name="${applicationName}"
@@ -31,4 +32,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <!-- Required to run keep-alive objectbox service when targeting API 28 or higher -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 </manifest>

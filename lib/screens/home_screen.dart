@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
  }
  Future<List<PostModel>> getPostList()async{
    List<PostModel> list=[];
-
+   objectBox.clearAllDB();
    if(objectBox.getPostModelCount()>=1){
      print("Data from Object Box");
      return objectBox.getAllPostModel();
@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
      }
      objectBox.insertAllPostModel(list);
      print("Data from API");
+     print(list.length);
      return list;
    }
 
@@ -96,10 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
           //   },
           // ),
 
-          StreamBuilder<List<PostModel>>(
-            stream: objectBox.getAllPostOfListStream(),
+          FutureBuilder<List<PostModel>>(
+            future: getPostList(),
             builder: (context, snapshot){
-              if(snapshot.connectionState==ConnectionState.active){
+              if(snapshot.hasError){
+                return Center(child: Text(snapshot.error.toString()),);
+              }
+              if(snapshot.hasData){
                 return ListView.builder(
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
