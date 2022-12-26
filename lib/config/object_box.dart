@@ -2,7 +2,7 @@ import 'package:local_storage_app/objectbox.g.dart';
 
 import '../models/post_model.dart';
 import '../models/user_model.dart';
-
+// http://localhost:8090/
 class ObjectBox{
   late final Store store;
   late final Admin _admin;
