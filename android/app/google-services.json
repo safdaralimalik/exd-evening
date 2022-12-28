@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614544103891",
+    "project_id": "exd-evening",
+    "storage_bucket": "exd-evening.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614544103891:android:90982520c621c19780f726",
+        "android_client_info": {
+          "package_name": "com.example.firestore_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614544103891-utugq4vg421onuj7ir37q48nk7n8349u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFc76K4pdH8wBnCt12YGvsVZmkaCW6yRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614544103891-utugq4vg421onuj7ir37q48nk7n8349u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
