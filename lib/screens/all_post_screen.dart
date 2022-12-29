@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_app/screens/post_detail_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../models/post_model.dart';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key? key}) : super(key: key);
@@ -11,7 +14,38 @@ class AllPostScreen extends StatefulWidget {
 class _AllPostScreenState extends State<AllPostScreen> {
   @override
   Widget build(BuildContext context) {
-    CollectionReference posts = FirebaseFirestore.instance.collection('post');
+    CollectionReference postReference = FirebaseFirestore.instance.collection('post');
+
+    Future<List<PostModel>> getPostListFromFirestore()async{
+      List<PostModel> postList=[];
+      // var q=await postReference.get();
+      // for (var doc in q.docs) {
+      //   Map<String,dynamic> docData=doc.data() as Map<String,dynamic>;
+      //   postList.add(PostModel.fromJson(docData, doc.id));
+      // }
+      postReference
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+
+        for (var doc in querySnapshot.docs) {
+          Map<String,dynamic> docData=doc.data() as Map<String,dynamic>;
+          postList.add(PostModel.fromJson(docData, doc.id));
+        }
+        print("postList.length");
+        print(postList.length);
+
+      }).onError((error, stackTrace){
+        print("$error");
+
+      });
+      print("postList.length");
+      print(postList.length);
+      setState(() {
+
+      });
+      return postList;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("All Posts"),
@@ -19,28 +53,32 @@ class _AllPostScreenState extends State<AllPostScreen> {
           TextButton(onPressed: (){}, child: Text("Add"))
         ],
       ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: posts.get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-
-          if (snapshot.hasError) {
-            return Text("Something went wrong");
+      body: FutureBuilder<List<PostModel>>(
+        future: getPostListFromFirestore(),
+        builder: (context, snapshot){
+          if(snapshot.hasError){
+            return Center(child: Text("Error"),);
           }
-
-          if (snapshot.connectionState == ConnectionState.done) {
-            print("snapshot.data!.docs");
-            print(snapshot.data!.docs);
-            return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
+          if(snapshot.hasData){
+            print("snapshot.data!.length");
+            print(snapshot.data!.length);
+            return snapshot.data!.isEmpty?Center(child: Text("Empty"),):ListView.builder(
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context,index){
-              return Text("Full Name: ${snapshot.data!.docs[index]['title']} ${snapshot.data!.docs[index]['body']}");
+
+              PostModel detail=snapshot.data![index];
+              return ListTile(
+                title:Text(detail.title,style: TextStyle(color: Colors.black),) ,
+                subtitle: Text(detail.body),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PostDetailScreen(detail: detail)));
+                },
+              );
             });
           }
-
-          return Text("loading");
+          return Center(child: CircularProgressIndicator(),);
         },
-      ),
+      )
     );
   }
 }

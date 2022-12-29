@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_app/models/post_model.dart';
+import 'package:firestore_app/screens/post_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class PostListScreen extends StatefulWidget {
@@ -11,6 +13,8 @@ class PostListScreen extends StatefulWidget {
 class _PostListScreenState extends State<PostListScreen> {
   CollectionReference postReference =
       FirebaseFirestore.instance.collection("post");
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +34,15 @@ class _PostListScreenState extends State<PostListScreen> {
               return  ListView.builder(
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
-                  // Map<String,dynamic> d=snapshot.data!.docs[index].data() as Map<String,dynamic>;
-                  // String docId=snapshot.data!.docs[index].id;
+                  Map<String,dynamic> doc=snapshot.data!.docs[index].data() as Map<String,dynamic>;
+                  String docId=snapshot.data!.docs[index].id;
+                  PostModel detail=PostModel.fromJson(doc, docId);
                   return ListTile(
-                    title: Text(snapshot.data!.docs[index]["title"]),
-                    subtitle: Text(snapshot.data!.docs[index]["body"]),
+                    title: Text(detail.title),
+                    subtitle: Text(detail.body),
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PostDetailScreen(detail: detail)));
+                    },
                   );
                 },
               );
