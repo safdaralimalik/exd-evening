@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddPostScreen extends StatefulWidget {
@@ -17,7 +18,14 @@ class _AddPostScreenState extends State<AddPostScreen> {
   CollectionReference commentsReference=FirebaseFirestore.instance.collection("post").doc("1nLbxQfCLravxe16EOXJ").collection("comments");
   // add data to firestore
   void addPostToFirestore(String titleText,String bodyText)async{
-    Map<String,dynamic> data={"title":titleText,"body":bodyText};
+
+    User? currentUser=FirebaseAuth.instance.currentUser;
+    String uid="";
+    if(currentUser!=null){
+      uid=currentUser.uid;
+    }
+
+    Map<String,dynamic> data={"title":titleText,"body":bodyText,"uid":uid};
     postReference.add(data).then((value)
     => print("Siccessfully add to firestore")).onError((error, stackTrace) => print("Error: "));
   }

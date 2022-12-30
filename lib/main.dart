@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_app/screens/add_post_screen.dart';
 import 'package:firestore_app/screens/all_post_screen.dart';
 import 'package:firestore_app/screens/post_list_screen.dart';
+import 'package:firestore_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async{
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const AllPostScreen(),
+      home: const SignupScreen(),
     );
   }
 }
