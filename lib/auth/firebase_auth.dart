@@ -28,7 +28,7 @@ class Auth {
           "uid": currentUser.uid
         };
 
-        FirestoreDB.addUserProfiler(data: userProfileData,uid: currentUser.uid);
+        FirestoreDB.addUserProfile(data: userProfileData,uid: currentUser.uid);
       }
 
 
