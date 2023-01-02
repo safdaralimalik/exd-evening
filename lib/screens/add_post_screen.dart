@@ -15,13 +15,14 @@ class _AddPostScreenState extends State<AddPostScreen> {
   TextEditingController bodyController=TextEditingController();
 
   CollectionReference postReference=FirebaseFirestore.instance.collection("post");
-  CollectionReference commentsReference=FirebaseFirestore.instance.collection("post").doc("1nLbxQfCLravxe16EOXJ").collection("comments");
+ // CollectionReference commentsReference=FirebaseFirestore.instance.collection("post").doc("1nLbxQfCLravxe16EOXJ").collection("comments");
   // add data to firestore
   void addPostToFirestore(String titleText,String bodyText)async{
 
     User? currentUser=FirebaseAuth.instance.currentUser;
     String uid="";
     if(currentUser!=null){
+
       uid=currentUser.uid;
     }
 

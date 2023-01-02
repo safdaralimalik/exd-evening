@@ -2,6 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../db/firestore_db.dart';
+
 class Auth {
   static CollectionReference userReference =
       FirebaseFirestore.instance.collection("user");
@@ -19,15 +21,14 @@ class Auth {
       User? currentUser = credential.user;
 
       if (currentUser != null) {
-        DocumentReference currentUserReference =
-            userReference.doc(currentUser.uid);
         Map<String, dynamic> userProfileData = {
           "name": fullName,
           "phone": phoneNumber,
           "email": email,
           "uid": currentUser.uid
         };
-        await currentUserReference.set(userProfileData);
+
+        FirestoreDB.addUserProfiler(data: userProfileData,uid: currentUser.uid);
       }
 
 

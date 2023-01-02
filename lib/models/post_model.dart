@@ -11,8 +11,8 @@ class PostModel {
   late final String uid;
 
   PostModel.fromJson(Map<String, dynamic> json,String docId){
-    title = json['title'];
-    body = json['body'];
+    title = json['title']??"";
+    body = json['body']??"";
     uid = json['uid']??"";
     id = docId;
   }
