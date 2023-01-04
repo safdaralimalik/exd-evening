@@ -57,6 +57,7 @@ class Auth {
 
       status = true;
     } on FirebaseAuthException catch (e) {
+      
 
     } catch (e) {
       print(e);

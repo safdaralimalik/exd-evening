@@ -34,9 +34,9 @@ class _PostListScreenState extends State<PostListScreen> {
               return  ListView.builder(
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
-                  Map<String,dynamic> doc=snapshot.data!.docs[index].data() as Map<String,dynamic>;
-                  String docId=snapshot.data!.docs[index].id;
-                  PostModel detail=PostModel.fromJson(doc, docId);
+                  // Map<String,dynamic> doc=snapshot.data!.docs[index].data() as Map<String,dynamic>;
+                  // String docId=snapshot.data!.docs[index].id;
+                  PostModel detail=PostModel.fromDocumentSnapshot(snapshot: snapshot.data!.docs[index]);
                   return ListTile(
                     title: Text(detail.title),
                     subtitle: Text(detail.body),

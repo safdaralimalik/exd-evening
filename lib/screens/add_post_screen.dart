@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../models/post_model.dart';
+
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);
 
@@ -26,8 +28,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
       uid=currentUser.uid;
     }
 
-    Map<String,dynamic> data={"title":titleText,"body":bodyText,"uid":uid};
-    postReference.add(data).then((value)
+    //Map<String,dynamic> data={"title":titleText,"body":bodyText,"uid":uid};
+    PostModel detail=PostModel(uid: uid,title: titleText,body:bodyText,id: "0" );
+    postReference.add(detail.toJsonWithoutId()).then((value)
     => print("Siccessfully add to firestore")).onError((error, stackTrace) => print("Error: "));
   }
 
