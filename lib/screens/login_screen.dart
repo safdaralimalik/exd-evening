@@ -27,15 +27,20 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: Image.file(logic.imageFile!,fit: BoxFit.cover,)),
+                        child: GestureDetector(
+                          onTap:()async{
+                            await logic.pickUserProfileImage(context);
+                          },
+                          child: SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Image.file(logic.imageFile!,fit: BoxFit.cover,)),
+                        ),
                       ),
                     ],
                   ):  TextButton(
                       onPressed:()async{
-                        await logic.pickUserProfileImage();
+                        await logic.pickUserProfileImage(context);
                       },
                       child:Text("Pick Image",style: TextStyle(color: Colors.blue),));
                 }),
