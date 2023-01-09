@@ -22,6 +22,23 @@ class FirestoreDB {
     }
   }
 
+  static Future<bool> updateProfileImage(
+      {required String firebaseImagePath, required String uid}) async {
+
+    User? user = FirebaseAuth.instance.currentUser;
+    String uid = "";
+    if (user != null) {
+      uid = user.uid;
+    }
+    try {
+      DocumentReference currentUserReference = userReference.doc(uid);
+      await currentUserReference.update({"profileImageUrl":firebaseImagePath});
+      return true;
+    } on Exception catch (e) {
+      return false;
+    }
+  }
+
   //data={"title":"dasdsa","body":"dasda"};
   static addNewPost(Map<String, dynamic> data) async {
     User? user = FirebaseAuth.instance.currentUser;
