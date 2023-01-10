@@ -55,3 +55,23 @@ class PostModelNew {
   }
 
 }
+
+
+var user={
+  "id":0,
+  "name":"adsad",
+  "email":"wfsdfdfds",
+  "uid":"asdsad",
+  "dob":"dsad",
+  "gender":"cscs",
+  "education":"dsadsd",
+  "profileImageUrl":"Adsafs",
+  "coverImageUrl":"assfs",
+  "date_create":"adasa",
+  "date_update":"adasa",
+  "phoneNumber":"adasa",
+  "lat":"adasa",
+  "lng":"adasa",
+  "address":"adasa",
+
+};
