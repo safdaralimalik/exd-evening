@@ -16,7 +16,8 @@ class UserModel {
     required this.lng,
     required this.address,
   });
-  late final int id;
+ int? id;
+  late final String userId;
   late final String name;
   late final String email;
   late final String uid;
@@ -34,6 +35,7 @@ class UserModel {
 
   UserModel.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
+    id = json['userId']??0;
     name = json['name']??"";
     email = json['email']??"";
     uid = json['uid']??"";
@@ -67,6 +69,7 @@ class UserModel {
     data['lat'] = lat;
     data['lng'] = lng;
     data['address'] = address;
+    data['userId'] = userId;
     return data;
   }
 }

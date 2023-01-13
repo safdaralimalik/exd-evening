@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firestore_app/db/prefs.dart';
 import 'package:firestore_app/screens/add_post_screen.dart';
 import 'package:firestore_app/screens/all_post_screen.dart';
 import 'package:firestore_app/screens/home_acreen.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Prefs.initPrefs();
   runApp(const MyApp());
 }
 

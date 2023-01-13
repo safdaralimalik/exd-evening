@@ -39,6 +39,13 @@ class FirestoreDB {
     }
   }
 
+  incrementCount(String postId)async{
+    await postReference.doc(postId).update({"likeCount": FieldValue.increment(1)});
+  }
+  decrementCount(String postId)async{
+    await postReference.doc(postId).update({"likeCount": FieldValue.increment(-1)});
+  }
+
   //data={"title":"dasdsa","body":"dasda"};
   static addNewPost(Map<String, dynamic> data) async {
     User? user = FirebaseAuth.instance.currentUser;

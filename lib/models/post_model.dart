@@ -21,10 +21,11 @@ class PostModel {
   }
 
   PostModel.fromDocumentSnapshot({required DocumentSnapshot snapshot}){
+    Map<String,dynamic> data=snapshot.data() as  Map<String,dynamic>;
     id=snapshot.id;
-    title=snapshot['title']??"";
-    body=snapshot['body']??"";
-    uid=snapshot['uid']??"";
+    title=data['title']??"";
+    body=data['body']??"";
+    uid=data['uid']??"";
   }
 
   Map<String, dynamic> toJson() {

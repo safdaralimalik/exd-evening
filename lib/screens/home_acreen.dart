@@ -1,5 +1,9 @@
+import 'package:firestore_app/screens/add_post_screen.dart';
+import 'package:firestore_app/screens/post_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../db/prefs.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,12 +15,13 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.9,
-        title: Text("EXD Social App"),
+        title: Text(Prefs.getUserUID()),
         centerTitle: true,
       ),
       body: ListView.separated(
         itemCount: 20,
         itemBuilder: (context, index) {
+          Get.to(AddPostScreen(),  transition: Transition.downToUp);
         return Container(
           width: Get.width,
           child: Column(
