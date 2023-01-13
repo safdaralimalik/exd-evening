@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ChatModel {
   ChatModel({
     required this.chatText,
@@ -7,6 +9,7 @@ class ChatModel {
     required this.senderUser,
     required this.receiverUser,
   });
+  late final String chatId;
   late final String chatText;
   late final String dateTime;
   late final String imageUrl;
@@ -14,13 +17,14 @@ class ChatModel {
   late final ChatUser senderUser;
   late final ChatUser receiverUser;
 
-  ChatModel.fromJson(Map<String, dynamic> json){
-    chatText = json['chatText'];
-    dateTime = json['dateTime'];
-    imageUrl = json['imageUrl'];
-    status = json['status'];
-    senderUser = ChatUser.fromJson(json['senderUser']);
-    receiverUser = ChatUser.fromJson(json['receiverUser']);
+  ChatModel.fromDocumentSnapshot({required DocumentSnapshot snapshot}){
+    chatId=snapshot.id;
+    chatText = snapshot['chatText'];
+    dateTime = snapshot['dateTime'];
+    imageUrl = snapshot['imageUrl'];
+    status = snapshot['status'];
+    senderUser = ChatUser.fromJson(snapshot['senderUser']);
+    receiverUser = ChatUser.fromJson(snapshot['receiverUser']);
   }
 
   Map<String, dynamic> toJson() {
