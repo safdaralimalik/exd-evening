@@ -3,7 +3,9 @@ import 'package:firestore_app/models/user_model.dart';
 import 'package:firestore_app/screens/chat_test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:get/get.dart';
 
+import '../../controllers/users_list_controller.dart';
 
 class ChatUserListScreen extends StatefulWidget {
   const ChatUserListScreen({Key? key}) : super(key: key);
@@ -45,6 +47,7 @@ class _ChatUserListScreenState extends State<ChatUserListScreen> {
     // });
     return usersList;
   }
+  UserListController controller=Get.put(UserListController());
   @override
   void initState() {
     // TODO: implement initState
@@ -80,12 +83,19 @@ class _ChatUserListScreenState extends State<ChatUserListScreen> {
                       title:Text(detail.name,style: TextStyle(color: Colors.black),) ,
                       subtitle: Text(detail.email),
                       onTap: (){
+
+                        final _user =  types.User(
+                          id: detail.uid,
+                          firstName:detail.name,
+                          imageUrl: detail.profileImageUrl,
+                        );
+                        controller.currentOtherUser=types.User(
+                          id: detail.uid,
+                          firstName:detail.name,
+                          imageUrl: detail.profileImageUrl,
+                        );
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          final _user =  types.User(
-                            id: detail.uid,
-                            firstName:detail.name,
-                            imageUrl: detail.profileImageUrl,
-                          );
+
                         return ChatPage(
                           receiverUser: _user,
                         );
