@@ -220,7 +220,7 @@ class _ChatPageState extends State<ChatPage> {
     final textMessage = types.TextMessage(
         author: _user,
         createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: "0",
+        id: _user.id,
         text: message.text,
         remoteId: widget.receiverUser.id);
 
@@ -238,7 +238,7 @@ class _ChatPageState extends State<ChatPage> {
     CollectionReference chatReference=FirebaseFirestore.instance.collection("chat");
     chatReference
         .where("remoteId", isEqualTo:widget.receiverUser.id )
-
+        .where("id", isEqualTo:_user.id )
         .get()
         .then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
