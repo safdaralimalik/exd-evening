@@ -2,22 +2,24 @@ import 'package:firestore_app/auth/firebase_auth.dart';
 import 'package:firestore_app/screens/add_post_screen.dart';
 import 'package:firestore_app/screens/chat/chat_user_list_screen.dart';
 import 'package:flutter/material.dart';
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
-  TextEditingController nameController=TextEditingController();
-  TextEditingController phoneController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [TextButton(onPressed: (){}, child: Text("Sign Up"))],
+      ),
       body: ListView(
         children: [
           TextFormField(
@@ -32,21 +34,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 hintText: "Password"
             ),
           ),
-          TextFormField(
-            controller: nameController,
-            decoration: InputDecoration(
-                hintText: "name"
-            ),
-          ),
-          TextFormField(
-            controller: phoneController,
-            decoration: InputDecoration(
-                hintText: "Phone"
-            ),
-          ),
+
 
           TextButton(onPressed: ()async{
-            await Auth.signupUser(email: emailController.text, password: passwordController.text, fullName: nameController.text, phoneNumber: phoneController.text);
+            await Auth.loginUser(email: emailController.text, password: passwordController.text);
 
 
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatUserListScreen()));

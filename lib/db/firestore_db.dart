@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreDB {
   static CollectionReference postReference =
-      FirebaseFirestore.instance.collection("posts");
+      FirebaseFirestore.instance.collection("post");
   static CollectionReference commentsReference =
       FirebaseFirestore.instance.collection("comments");
   static CollectionReference userReference =
-      FirebaseFirestore.instance.collection("users");
+      FirebaseFirestore.instance.collection("user");
 
   static Future<bool> addUserProfile(
       {required Map<String, dynamic> data, required String uid}) async {

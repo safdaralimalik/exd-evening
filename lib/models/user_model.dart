@@ -33,9 +33,8 @@ class UserModel {
   late final String lng;
   late final String address;
 
-  UserModel.fromJson(Map<String, dynamic> json){
-    id = json['id']??0;
-    id = json['userId']??0;
+  UserModel.fromJson(Map<String, dynamic> json, String id){
+    id = id;
     name = json['name']??"";
     email = json['email']??"";
     uid = json['uid']??"";
