@@ -51,6 +51,13 @@ dependencies:
   get: ^4.6.5
   # chat
   flutter_chat_ui: ^1.6.6
+  flutter_firebase_chat_core: ^1.6.4
+  faker: ^2.0.0
+  path_provider: ^2.0.11
+  file_picker: ^5.2.2
+  mime: ^1.0.2
+  open_filex: ^4.2.2
+
 
 dev_dependencies:
   flutter_test:

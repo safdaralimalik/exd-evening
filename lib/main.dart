@@ -1,13 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_app/db/prefs.dart';
-import 'package:firestore_app/screens/add_post_screen.dart';
-import 'package:firestore_app/screens/all_post_screen.dart';
-import 'package:firestore_app/screens/chat/chat_user_list_screen.dart';
-import 'package:firestore_app/screens/chat_test_screen.dart';
-import 'package:firestore_app/screens/home_acreen.dart';
-import 'package:firestore_app/screens/login_screen.dart';
-import 'package:firestore_app/screens/post_list_screen.dart';
-import 'package:firestore_app/screens/signup_screen.dart';
+
+import 'package:firestore_app/screens/chat/rooms.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 void main() async{
@@ -28,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: const RoomsPage(),
     );
   }
 }
