@@ -57,6 +57,8 @@ dependencies:
   file_picker: ^5.2.2
   mime: ^1.0.2
   open_filex: ^4.2.2
+#  agora audio video calling
+  agora_uikit: ^1.1.2
 
 
 dev_dependencies:

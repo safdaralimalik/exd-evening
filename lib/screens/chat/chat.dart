@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firestore_app/screens/chat/agora_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -12,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:get/get.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({
     super.key,
@@ -34,7 +35,9 @@ class _ChatPageState extends State<ChatPage> {
           systemOverlayStyle: SystemUiOverlayStyle.light,
           title:  Text('${widget.room.name}'),
           actions: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.video_call)),
+            IconButton(onPressed: (){
+              Get.to(AgoraScreen(room: widget.room,));
+            }, icon: Icon(Icons.video_call)),
             IconButton(onPressed: (){}, icon: Icon(Icons.call)),
           ],
         ),

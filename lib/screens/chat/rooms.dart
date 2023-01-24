@@ -110,8 +110,7 @@ class _RoomsPageState extends State<RoomsPage> {
 
                     return GestureDetector(
                       onTap: () {
-                        print("room.lastMessages?.length: ${room.toJson()}");
-                        return;
+
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ChatPage(
