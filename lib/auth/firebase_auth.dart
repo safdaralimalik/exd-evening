@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../db/firestore_db.dart';
 
@@ -14,6 +15,7 @@ class Auth {
       required String fullName,
       required String phoneNumber}) async {
     bool status = false;
+    String? token=await FirebaseMessaging.instance.getToken();
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -28,7 +30,12 @@ class Auth {
           "uid": currentUser.uid
         };
 
-        FirestoreDB.addUserProfile(data: userProfileData,uid: currentUser.uid);
+        await FirestoreDB.addUserProfile(data: userProfileData,uid: currentUser.uid);
+        DocumentReference userRef=FirebaseFirestore.instance.collection("users").doc(currentUser.uid??"");
+        await userRef.update({"firebaseToken":token});
+
+
+
       }
 
 
@@ -49,10 +56,18 @@ class Auth {
       {required String email,
         required String password,}) async {
     bool status = false;
+    String? token=await FirebaseMessaging.instance.getToken();
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
 
       User? currentUser = credential.user;
+
+      DocumentReference userRef=FirebaseFirestore.instance.collection("users").doc(currentUser?.uid??"");
+
+      await userRef.update({"firebaseToken":token});
+
+
+
 
 
       status = true;

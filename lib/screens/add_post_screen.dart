@@ -26,6 +26,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     if(currentUser!=null){
 
       uid=currentUser.uid;
+
     }
 
     //Map<String,dynamic> data={"title":titleText,"body":bodyText,"uid":uid};

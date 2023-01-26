@@ -59,6 +59,7 @@ dependencies:
   open_filex: ^4.2.2
 #  agora audio video calling
   agora_uikit: ^1.1.2
+  firebase_messaging: ^14.2.1
 
 
 dev_dependencies:
