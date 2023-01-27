@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firestore_app/db/prefs.dart';
@@ -18,15 +20,17 @@ void main() async{
   );
 
   await Prefs.initPrefs();
-  NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
+ if(!Platform.isAndroid){
+   NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+     alert: true,
+     announcement: false,
+     badge: true,
+     carPlay: false,
+     criticalAlert: false,
+     provisional: false,
+     sound: true,
+   );
+ }
   await getFCMToken();
   runApp(const MyApp());
 }
